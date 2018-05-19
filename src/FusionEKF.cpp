@@ -90,14 +90,14 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       float v_y = rho_dot * sin(phi);
 
       //load the state variable
-      kf_x_ << p_x, p_y, v_x, v_y;
+      ekf_.x_ << p_x, p_y, v_x, v_y;
 
     }
     else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
       /**
       Initialize state. for laser use pos 1 and 2 with zero velocity
       */
-      kf_.x_ << measurement_pack.raw_measurements_[0], measurement_pack.raw_measurements_[1], 0, 0;
+      ekf_.x_ << measurement_pack.raw_measurements_[0], measurement_pack.raw_measurements_[1], 0, 0;
 
     }
 
