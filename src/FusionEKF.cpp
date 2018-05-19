@@ -31,12 +31,23 @@ FusionEKF::FusionEKF() {
         0, 0.0009, 0,
         0, 0, 0.09;
 
-  /**
-  TODO:
-    * Finish initializing the FusionEKF.
-    * Set the process and measurement noises
-  */
+  //state covariance matrix P
+  P_ = MatrixXd(4, 4);
+  P_ << 1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1000, 0,
+        0, 0, 0, 1000;
 
+  //transition matrix F
+  F_ = MatrixXd(4, 4);
+  F_ << 1, 0, 1, 0,
+        0, 1, 0, 1,
+        0, 0, 1, 0,
+        0, 0, 0, 1;
+
+  //Q matrix variables
+  noise_ax_ = 9;
+  noise_ay_ = 9;
 
 }
 
