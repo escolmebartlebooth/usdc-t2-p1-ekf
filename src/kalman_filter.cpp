@@ -25,7 +25,6 @@ void KalmanFilter::Predict() {
   TODO:
     * predict the state
   */
-  std::cout << "predict" << std::endl;
 
 }
 
@@ -34,7 +33,6 @@ void KalmanFilter::Update(const VectorXd &z) {
   TODO:
     * update the state by using Kalman Filter equations
   */
-  std::cout << "update LIDAR" << std::endl;
 }
 
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
@@ -42,5 +40,4 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   TODO:
     * update the state by using Extended Kalman Filter equations
   */
-  std::cout << "update RADAR" << std::endl;
 }
