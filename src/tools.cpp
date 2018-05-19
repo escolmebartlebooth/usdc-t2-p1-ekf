@@ -36,10 +36,10 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
     //coefficient-wise multiplication
     residual = residual.array()*residual.array();
     rmse += residual;
-    //cout << "residuals" << endl;
-    //cout << residual << endl;
-    //cout << "rmse" << endl;
-    //cout << rmse << endl;
+    cout << "residuals" << endl;
+    cout << residual << endl;
+    cout << "rmse" << endl;
+    cout << rmse << endl;
   }
 
   //calculate the mean
