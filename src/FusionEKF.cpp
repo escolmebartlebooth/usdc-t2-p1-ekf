@@ -132,8 +132,8 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
   cout << "delta:" << dt << endl;
   //Modify the F matrix so that the time is integrated
-  //ekf_.F_(0, 2) = dt;
-  //ekf_.F_(1, 3) = dt;
+  ekf_.F_(0, 2) = dt;
+  ekf_.F_(1, 3) = dt;
 
   //set the process covariance matrix Q
   //ekf_.Q_ = MatrixXd(4, 4);
