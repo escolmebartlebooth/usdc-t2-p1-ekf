@@ -32,7 +32,7 @@ FusionEKF::FusionEKF() {
         0, 0, 0.09;
 
   //measurement covariance matrix - laser
-  H_laser_ << 0, 1, 0, 0,
+  H_laser_ << 1, 0, 0, 0,
         0, 1, 0, 0;
 
   //state covariance matrix P
