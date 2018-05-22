@@ -69,6 +69,18 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   VectorXd y = z - z_pred;
 
   //should normalise the angle here y(1)
+  float new_theta = y(1);
+  if (new_theta < -3.14) {
+    while (new_theta < -3.14){
+      new_theta += 2 * pi;
+    }
+  } else if (new_theta > 3.14) {
+    while (new_theta > 3.14){
+      new_theta -= 2 * pi;
+    }
+  }
+  //update phi in y - even though i called it theta...
+  y(1) = new_theta;
 
   MatrixXd Ht = H_.transpose();
   MatrixXd S = H_ * P_ * Ht + R_;
