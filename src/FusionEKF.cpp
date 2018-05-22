@@ -90,11 +90,11 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       //get the cartesian equivalents
       float p_x = rho * cos(phi);
       float p_y = rho * sin(phi);
-      float v_x = rho_dot * cos(phi);
-      float v_y = rho_dot * sin(phi);
+      //float v_x = rho_dot * cos(phi);
+      //float v_y = rho_dot * sin(phi);
 
-      //load the state variable
-      ekf_.x_ << p_x, p_y, v_x, v_y;
+      //load the state variable - shouldn't use radar velocity to initialise...
+      ekf_.x_ << p_x, p_y, 0, 0//v_x, v_y;
 
     }
     else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
