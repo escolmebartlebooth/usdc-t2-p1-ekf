@@ -36,7 +36,6 @@ int main()
   // add a constant to say which measurements to use
   // 0 = both, 1 = RADAR, 2 = LASER
   const int MEASUREMENT_USAGE = 0;
-  bool use_measurement = true;
 
   // used to compute the RMSE later
   Tools tools;
@@ -60,7 +59,7 @@ int main()
 
         if (event == "telemetry") {
           // set measurement to be used by default
-          use_measurement = true;
+          bool use_measurement = true;
 
           // j[1] is the data JSON object
 
