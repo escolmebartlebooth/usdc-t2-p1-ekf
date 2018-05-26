@@ -31,6 +31,9 @@ public:
   */
   KalmanFilter ekf_;
 
+  // variable to control data use
+  int measurement_usage;
+
 private:
   // check whether the tracking toolbox was initialized or not (first measurement)
   bool is_initialized_;

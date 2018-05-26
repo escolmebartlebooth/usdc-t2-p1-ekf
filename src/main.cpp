@@ -34,10 +34,9 @@ int main()
   FusionEKF fusionEKF;
 
   //try to capture data input...
-  int measurement_usage;
   cout << "please choose from 0: all, 1: RADAR, 2: LASER then press ENTER";
-  cin >> measurement_usage;
-  cout << "using: " << measurement_usage << endl;
+  cin >> fusionEKF.measurement_usage;
+  cout << "using: " << fusionEKF.measurement_usage << endl;
 
   // used to compute the RMSE later
   Tools tools;
@@ -72,8 +71,7 @@ int main()
     	    string sensor_type;
     	    iss >> sensor_type;
 
-          cout << "using: " << measurement_usage << endl;
-    	    if (sensor_type.compare("L") == 0) {
+          if (sensor_type.compare("L") == 0) {
       	  		meas_package.sensor_type_ = MeasurementPackage::LASER;
           		meas_package.raw_measurements_ = VectorXd(2);
           		float px;
