@@ -34,7 +34,7 @@ int main()
   FusionEKF fusionEKF;
 
   //try to capture data input...
-  cout << "please choose from 0: all, 1: RADAR, 2: LASER then press ENTER";
+  cout << "please choose from 0: all, 1: RADAR, 2: LASER then press Enter:  ";
   cin >> fusionEKF.measurement_usage;
   cout << "using: " << fusionEKF.measurement_usage << endl;
 
