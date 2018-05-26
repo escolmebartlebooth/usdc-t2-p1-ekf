@@ -70,10 +70,10 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
   float c2 = sqrt(c1);
   float c3 = (c1*c2);
 
-  //check division by zero and return empty Jacobian if so
+  //check division by zero and initialise with a min value
   if(fabs(c1) < 0.0001){
     cout << "CalculateJacobian () - Error - Division by Zero" << endl;
-    return Hj;
+    c1 = 0.0001;
   }
 
   //compute the Jacobian matrix
