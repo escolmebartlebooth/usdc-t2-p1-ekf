@@ -1,4 +1,5 @@
 #include "kalman_filter.h"
+#include <iostream>
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
@@ -36,16 +37,26 @@ void KalmanFilter::Update(const VectorXd &z) {
   TODO:
     * update the state by using Kalman Filter equations
   */
+  std::cout << "1" << std::endl;
   VectorXd z_pred = H_ * x_;
+  std::cout << "2" << std::endl;
   VectorXd y = z - z_pred;
+  std::cout << "3" << std::endl;
   MatrixXd Ht = H_.transpose();
+  std::cout << "4" << std::endl;
   MatrixXd S = H_ * P_ * Ht + R_;
+  std::cout << "5" << std::endl;
   MatrixXd SI = S.inverse();
+  std::cout << "6" << std::endl;
   MatrixXd K = P_ * Ht * SI;
+  std::cout << "7" << std::endl;
   long x_size = x_.size();
+  std::cout << "8" << std::endl;
   MatrixXd I = MatrixXd::Identity(x_size, x_size);
 
+  std::cout << "9" << std::endl;
   x_ = x_ + (K * y);
+  std::cout << "10" << std::endl;
   P_ = (I - K * H_) * P_;
 }
 
