@@ -35,7 +35,7 @@ int main()
 
   // add a constant to say which measurements to use
   // 0 = both, 1 = RADAR, 2 = LASER
-  const int MEASUREMENT_USAGE = 0
+  const int MEASUREMENT_USAGE = 0;
   bool use_measurement = true;
 
   // used to compute the RMSE later
