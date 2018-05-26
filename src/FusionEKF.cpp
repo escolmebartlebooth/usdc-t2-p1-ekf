@@ -85,7 +85,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       */
       float rho = measurement_pack.raw_measurements_[0];
       float phi = measurement_pack.raw_measurements_[1];
-      float rho_dot = measurement_pack.raw_measurements_[2];
+      //float rho_dot = measurement_pack.raw_measurements_[2];
 
       //get the cartesian equivalents
       float p_x = rho * cos(phi);
@@ -157,14 +157,15 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
      * Update the state and covariance matrices.
    */
 
-  if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR
-     && measurement_usage !=2) {
+  if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR &&
+      measurement_usage !=2) {
     // Radar updates
     Hj_ = tools.CalculateJacobian(ekf_.x_);
     ekf_.H_ = Hj_;
     ekf_.R_ = R_radar_;
     ekf_.UpdateEKF(measurement_pack.raw_measurements_);
-  } else if (measurement_usage !=1) {
+  } else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER &&
+             measurement_usage !=1) {
     // Laser updates
     ekf_.H_ = H_laser_;
     ekf_.R_ = R_laser_;
