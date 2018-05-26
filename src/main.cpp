@@ -35,7 +35,7 @@ int main()
 
   // add a constant to say which measurements to use
   // 0 = both, 1 = RADAR, 2 = LASER
-  const int MEASUREMENT_USAGE = 0;
+  const int MEASUREMENT_USAGE = 1;
 
   // used to compute the RMSE later
   Tools tools;
@@ -83,7 +83,7 @@ int main()
           		meas_package.raw_measurements_ << px, py;
           		iss >> timestamp;
           		meas_package.timestamp_ = timestamp;
-              if (MEASUREMENT_USAGE == 2) {
+              if (MEASUREMENT_USAGE == 1) {
                 use_measurement = false;
               }
           } else if (sensor_type.compare("R") == 0) {
@@ -99,7 +99,7 @@ int main()
           		meas_package.raw_measurements_ << ro,theta, ro_dot;
           		iss >> timestamp;
           		meas_package.timestamp_ = timestamp;
-              if (MEASUREMENT_USAGE == 1) {
+              if (MEASUREMENT_USAGE == 2) {
                 use_measurement = false;
               }
           }
