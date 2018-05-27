@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
   //try to capture data input...we assume second parameter is run type
   if (argc > 1){
     try {
-      fusionEKF.measurement_usage = argv[1];
+      fusionEKF.measurement_usage = int(argv[1]);
     }
     catch(...) {
       cout << "bad input" << endl;
