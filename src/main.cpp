@@ -26,7 +26,7 @@ std::string hasData(std::string s) {
   return "";
 }
 
-int main()
+int main(int argc, char* argv[])
 {
   uWS::Hub h;
 
@@ -37,6 +37,10 @@ int main()
   cout << "please choose from 0: all, 1: RADAR, 2: LASER then press Enter:  ";
   cin >> fusionEKF.measurement_usage;
   cout << "using: " << fusionEKF.measurement_usage << endl;
+  cout << argc << endl;
+  if (argc > 1){
+    cout << argv[1] << endl;
+  }
 
   // used to compute the RMSE later
   Tools tools;
