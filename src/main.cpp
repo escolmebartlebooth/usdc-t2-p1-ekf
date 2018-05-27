@@ -33,14 +33,19 @@ int main(int argc, char* argv[])
   // Create a Kalman Filter instance
   FusionEKF fusionEKF;
 
-  //try to capture data input...
-  cout << "please choose from 0: all, 1: RADAR, 2: LASER then press Enter:  ";
-  cin >> fusionEKF.measurement_usage;
-  cout << "using: " << fusionEKF.measurement_usage << endl;
-  cout << argc << endl;
+  // default value - process all
+  fusionEKF.measurement_usage = 0;
+  //try to capture data input...we assume second parameter is run type
   if (argc > 1){
-    cout << argv[1] << endl;
+    try {
+      fusionEKF.measurement_usage = argv[1];
+    }
+    catch(...) {
+      cout << "bad input" << endl;
+    }
   }
+  cout << "using: " << fusionEKF.measurement_usage << endl;
+
 
   // used to compute the RMSE later
   Tools tools;
