@@ -1,7 +1,7 @@
 # Extended Kalman Filter Project for Self-Driving Car Engineer Nanodegree Program
 
 Author: David Escolme
-Date: 27 May 2018
+Date: 30 May 2018
 
 ## Project Objectives
 
@@ -11,7 +11,7 @@ Create an implementation in C++ of an extended kalman filter using sensor fusion
 
 [//]: # (Image References)
 
-[image1]: ./RMSE.png "RMSE Values"
+[image1]: RMSE.png "RMSE Values"
 
 ## Dependencies
 
@@ -73,19 +73,26 @@ OUTPUT: values provided by the c++ program to the simulator
 
 ## Results
 
-The algorithm converges to be within tolerance within:
+Using classroom defaults for the State X and Process Covariance Matrix P, the algorithm converges to be within tolerance within:
 * Position: Measurement 36
 * Velocity: Measurement 339
 
+The initialisation values were:
+
+X = [Mxi, Myi, 0, 0] so the first measurement of position and zero velocity
+P (diagonals) = [1, 1, 1000, 1000] so resonable confidence in position and very low confidence in initial velocity state
+
+To improve the time taken to converge on the RMSE targets for Velocity, I experimented lowering the P values for velocity confidence and found that - roughly - a value of 10 for both x and y velocity directions allowed an earlier convergence on target for both datasets to around 260 measurements.
+
 ## Discussion Points:
 
-* normalisation of rho in RADAR data: The difference between 2 time periods is y = z - z_pred. This could lead to a rho of <-3.14 or >3.14 radians. It is important to normalise this angle to be -3.14 >= rho <= 3.14. This is achieved by adding or subtracting 2*pi radians from the calculated rho value until the value falls between these limits
+* normalisation of rho in RADAR data: The difference between 2 time periods is y = z - z_pred. This could lead to a phi of <-3.14 or >3.14 radians. It is important to normalise this angle to be -3.14 >= rho <= 3.14. This is achieved by adding or subtracting 2*pi radians from the calculated phi difference value until the value falls between these limits.
 
-* Use of only LASER or only RADAR data: From the 2 graphs below, it can be seen that when using one or other sensor in isolation, the filter converges to a higher error value. Only when combined does the convergence fall into the tolerance values for the project.
+* Use of only LASER or only RADAR data: From the 2 graphs below, it can be seen that when using one or other sensor in isolation, the filter converges to a higher error value. Only when combined does the convergence fall into the tolerance values for the project. Each sensor has its own inaccuracies. When combined, the overall effect is to 'average' each sensors deficiencies to arrive at a more accurate assessment of the state of the item being tracked.
 
 ![alt text][image1]
 
 * Protecting against division by zero in the Jacobian Matrix Hj: To avoid division by zero, a low limit value of 0.001 was set and would be used if the value of the input parameter to the matrix fell below that value.
 
-* The first frame of data: The velocity converges slowly to the tolerance level. The project hinted that better handling of the first frame may improve the algorithm. Unfortunately, at this time, that better handling alludes me.
+* The first frame of data: The velocity converges slowly to the tolerance level. The project hinted that better handling of the first frame may improve the algorithm. I tried, as discussed above, reducing the P matrix value for covariance for velocity in both the X and Y directions. This appeared to improve convergence by about 50 measurements. I suspect this is because a value of 1000 provides a very broad range to iterate on given the maximum likely velocity range of the item being tracked and by reducing the covariance, the algorithm can more quickly arrive at a more accurate estimate.
 
