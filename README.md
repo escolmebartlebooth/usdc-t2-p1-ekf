@@ -11,7 +11,7 @@ Create an implementation in C++ of an extended kalman filter using sensor fusion
 
 [//]: # (Image References)
 
-[image1]: RMSE.png "RMSE Values"
+[image1]: RMSE.PNG "RMSE Values"
 
 ## Dependencies
 
