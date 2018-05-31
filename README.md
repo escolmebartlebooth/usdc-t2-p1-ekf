@@ -13,7 +13,7 @@ Create an implementation in C++ of an extended kalman filter using sensor fusion
 
 [image1]: RMSE.PNG "RMSE Values"
 
-## Dependencies
+## Dependencies - taken from course notes
 
 This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases)
 
@@ -27,7 +27,7 @@ Once the install for uWebSocketIO is complete, the main program can be built and
 4. make
 5. ./ExtendedKF
 
-Please note that a parameter can be passed to ./ExtendedKF. This should be either 1 (use RADAR data only) or 2 (use LASER data only). All other values will use both data inputs.
+**Please note that a parameter can be passed to ./ExtendedKF. This should be either 1 (use RADAR data only) or 2 (use LASER data only). All other values will use both data inputs.**
 
 * cmake >= 3.5
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
@@ -73,7 +73,7 @@ OUTPUT: values provided by the c++ program to the simulator
 
 ## Results
 
-Using classroom defaults for the State X and Process Covariance Matrix P, the algorithm converges to be within tolerance within:
+Using classroom defaults for the State X and State Covariance Matrix P, the algorithm converges to be within tolerance within:
 * Position: Measurement 36
 * Velocity: Measurement 339
 
